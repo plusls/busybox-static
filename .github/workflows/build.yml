@@ -2,12 +2,10 @@ name: Run main.py and upload result
 
 on:
   push:
-    branches: [main]
   pull_request:
-    branches: [main]
   release:
     types: [published]
-  workflow_dispatch:  # 可手动触发
+  workflow_dispatch: # 可手动触发
 permissions:
   contents: write
 
