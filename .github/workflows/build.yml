@@ -1,0 +1,54 @@
+name: Run main.py and upload result
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  release:
+    types: [published]
+  workflow_dispatch:  # 可手动触发
+permissions:
+  contents: write
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache Zig build cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/zig
+          key: zig-cache-${{ runner.os }}
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Set up Python
+        run: uv python install
+
+      - name: Install the project
+        run: uv sync --locked --all-extras --dev
+
+      - name: Run check
+        run: |
+          uv run ruff format . --diff
+          uv run mypy .
+          uv run ruff check .
+
+      - name: Build
+        run: uv run python3 main.py
+
+      - name: Upload busybox
+        uses: actions/upload-artifact@v4
+        with:
+          name: static-busybox
+          path: build-dir/result/
+
+      - name: Upload to GitHub Release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build-dir/result/*

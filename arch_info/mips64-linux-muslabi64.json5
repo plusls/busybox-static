@@ -1,0 +1,9 @@
+{
+    "name": "mips64-linux-muslabi64",
+    "clang_target": "mips64-linux-muslabi64",
+    // 不设置的话编译会莫名报 warning
+    // zig: warning: ignoring '-fno-PIC' option as it cannot be used with implicit usage of -mabicalls and the N64 ABI [-Woption-ignored]  # noqa: E501
+    // 会导致 configure 配置错误
+    // https://github.com/crosstool-ng/crosstool-ng/issues/469
+    "arch_option": "-fPIC"
+}

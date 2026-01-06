@@ -1,0 +1,5 @@
+{
+    "name": "arm-linux-musleabi",
+    "clang_target": "arm-linux-musleabi",
+    "arch_option": "-march=arm7tdmi"
+}

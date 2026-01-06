@@ -1,0 +1,4 @@
+{
+    "name": "aarch64-linux-musl",
+    "clang_target": "aarch64-linux-musl",
+}

@@ -1,0 +1,9 @@
+{
+    "name": "mips-linux-musleabi",
+    "clang_target": "mips-linux-musleabi",
+    "arch_option": "-mcpu=mips32", // rel1
+    // 启用 lto 后 zig cc 的产物是 llvm ir
+    // 但是 busybox 编译时会把多个 .o 用 lld link 出一个大的 .o
+    // 此时会丢失软浮点的信息, 导致编译出硬浮点
+    "lld_option": "--plugin-opt=-mattr=+soft-float"
+}

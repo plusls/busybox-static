@@ -1,0 +1,4 @@
+{
+  "name": "powerpc64-linux-musl",
+  "clang_target": "powerpc64-linux-musl",
+}

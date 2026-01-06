@@ -1,0 +1,11 @@
+--- a/networking/tls.h
++++ b/networking/tls.h
+@@ -29,7 +29,7 @@
+ #if defined(__GNUC__) && defined(__i386__)
+   /* PSTM_X86 works correctly. +25 bytes. */
+ # define PSTM_32BIT
+-# define PSTM_X86
++// # define PSTM_X86
+ #endif
+ //#if defined(__GNUC__) && defined(__x86_64__)
+ //  /* PSTM_X86_64 works correctly, but +782 bytes. */

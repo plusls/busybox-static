@@ -1,0 +1,4 @@
+{
+    "name": "powerpc-linux-musleabi",
+    "clang_target": "powerpc-linux-musleabi",
+}
